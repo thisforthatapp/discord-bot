@@ -1,0 +1,15 @@
+# systemd/offers-bot.service
+[Unit]
+Description=NFT Offers Stats Bot
+After=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu/discord-bot/bots
+Environment=PYTHONPATH=/home/ubuntu/discord-bot/bots
+ExecStart=/home/ubuntu/discord-bot/venv/bin/python -c 'from offers_bot import OffersBot; OffersBot().run(os.getenv("OFFERS_BOT_TOKEN"))'
+Restart=always
+
+[Install]
+WantedBy=multi-unit.target

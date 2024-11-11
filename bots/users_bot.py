@@ -9,3 +9,7 @@ class UsersBot(BaseStatsBot):
 
     async def get_emoji(self):
         return "👥"
+
+if __name__ == "__main__":
+    bot = UsersBot()
+    bot.run(bot.supabase_key)

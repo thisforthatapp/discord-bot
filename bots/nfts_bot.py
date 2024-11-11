@@ -9,3 +9,7 @@ class NFTsBot(BaseStatsBot):
 
     async def get_emoji(self):
         return "🎨"
+
+if __name__ == "__main__":
+    bot = NFTsBot()
+    bot.run(bot.supabase_key)

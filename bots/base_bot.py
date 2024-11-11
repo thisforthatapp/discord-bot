@@ -1,4 +1,3 @@
-# bots/base_bot.py
 import os
 import discord
 from discord.ext import tasks
@@ -12,8 +11,7 @@ class BaseStatsBot(discord.Client):
         super().__init__(intents=intents)
         self.metric_name = metric_name
         self.update_stats.start()
-        
-        # Initialize Supabase
+        load_dotenv()
         self.supabase = create_client(
             os.getenv('SUPABASE_URL'),
             os.getenv('SUPABASE_KEY')
@@ -33,14 +31,11 @@ class BaseStatsBot(discord.Client):
         try:
             count = await self.get_count()
             emoji = await self.get_emoji()
-            
-            # Update bot status
             activity = discord.Activity(
                 type=discord.ActivityType.watching,
                 name=f"{count:,} {self.metric_name}"
             )
             await self.change_presence(activity=activity, status=discord.Status.online)
-            
         except Exception as e:
             print(f"Error updating {self.metric_name} stats: {e}")
             await self.change_presence(status=discord.Status.dnd)

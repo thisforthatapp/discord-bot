@@ -1,4 +1,6 @@
-# bots/users_bot.py
+import os
+from base_bot import BaseStatsBot
+
 class UsersBot(BaseStatsBot):
     def __init__(self):
         super().__init__("users")
@@ -12,4 +14,4 @@ class UsersBot(BaseStatsBot):
 
 if __name__ == "__main__":
     bot = UsersBot()
-    bot.run(bot.supabase_key)
+    bot.run(os.getenv('USERS_BOT_TOKEN'))

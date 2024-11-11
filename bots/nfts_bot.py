@@ -1,4 +1,6 @@
-# bots/nfts_bot.py
+import os
+from base_bot import BaseStatsBot
+
 class NFTsBot(BaseStatsBot):
     def __init__(self):
         super().__init__("NFTs")
@@ -8,8 +10,8 @@ class NFTsBot(BaseStatsBot):
         return response.count
 
     async def get_emoji(self):
-        return "🎨"
+        return "🖼️"
 
 if __name__ == "__main__":
     bot = NFTsBot()
-    bot.run(bot.supabase_key)
+    bot.run(os.getenv('NFTS_BOT_TOKEN'))

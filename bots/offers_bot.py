@@ -1,4 +1,6 @@
-# bots/offers_bot.py
+import os
+from base_bot import BaseStatsBot
+
 class OffersBot(BaseStatsBot):
     def __init__(self):
         super().__init__("offers")
@@ -12,4 +14,4 @@ class OffersBot(BaseStatsBot):
 
 if __name__ == "__main__":
     bot = OffersBot()
-    bot.run(bot.supabase_key)
+    bot.run(os.getenv('OFFERS_BOT_TOKEN'))

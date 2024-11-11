@@ -6,9 +6,9 @@ After=network.target
 [Service]
 Type=simple
 User=ubuntu
-WorkingDirectory=/home/ubuntu/nft-discord-bots
-Environment=PYTHONPATH=/home/ubuntu/nft-discord-bots
-ExecStart=/home/ubuntu/nft-discord-bots/venv/bin/python -c 'import os; from bots.offers_bot import OffersBot; OffersBot().run(os.getenv("OFFERS_BOT_TOKEN"))'
+WorkingDirectory=/home/ubuntu/discord-bot
+Environment=PYTHONPATH=/home/ubuntu/discord-bot
+ExecStart=/home/ubuntu/discord-bot/venv/bin/python -c 'import os; from bots.offers_bot import OffersBot; OffersBot().run(os.getenv("OFFERS_BOT_TOKEN"))'
 Restart=always
 
 [Install]

@@ -6,7 +6,7 @@ class UsersBot(BaseStatsBot):
         super().__init__("users")
 
     async def get_count(self):
-        response = self.supabase.table('users').select('*', count='exact').execute()
+        response = self.supabase.table('user_profile').select('*', count='exact').execute()
         return response.count
 
     async def get_emoji(self):

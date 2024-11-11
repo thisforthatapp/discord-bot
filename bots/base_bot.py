@@ -10,7 +10,6 @@ class BaseStatsBot(discord.Client):
         intents.message_content = True
         super().__init__(intents=intents)
         self.metric_name = metric_name
-        self.update_stats.start()
         load_dotenv()
         self.supabase = create_client(
             os.getenv('SUPABASE_URL'),
@@ -19,6 +18,8 @@ class BaseStatsBot(discord.Client):
 
     async def setup_hook(self):
         print(f'{self.metric_name} bot is ready!')
+        # Start the task in setup_hook instead of __init__
+        self.update_stats.start()
 
     async def get_count(self):
         raise NotImplementedError("Subclasses must implement get_count()")

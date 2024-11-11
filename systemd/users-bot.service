@@ -2,14 +2,16 @@
 [Unit]
 Description=NFT Users Stats Bot
 After=network.target
+StartLimitIntervalSec=0
 
 [Service]
 Type=simple
-User=ubuntu
-WorkingDirectory=/home/ubuntu/discord-bot
-Environment=PYTHONPATH=/home/ubuntu/discord-bot
-ExecStart=/home/ubuntu/discord-bot/venv/bin/python -c 'import os; from bots.users_bot import UsersBot; UsersBot().run(os.getenv("USERS_BOT_TOKEN"))'
 Restart=always
+RestartSec=1
+User=root
+WorkingDirectory=/home/ubuntu/discord-bot
+EnvironmentFile=/home/ubuntu/discord-bot/.env
+ExecStart=/home/ubuntu/discord-bot/venv/bin/python bots/users_bot.py
 
 [Install]
-WantedBy=multi-unit.target
+WantedBy=multi-user.target

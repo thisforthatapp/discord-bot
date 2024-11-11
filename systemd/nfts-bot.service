@@ -1,15 +1,17 @@
 # systemd/nfts-bot.service
 [Unit]
-Description=NFT Collection Stats Bot
+Description=NFT NFTs Stats Bot
 After=network.target
+StartLimitIntervalSec=0
 
 [Service]
 Type=simple
-User=ubuntu
-WorkingDirectory=/home/ubuntu/discord-bot
-Environment=PYTHONPATH=/home/ubuntu/discord-bot
-ExecStart=/home/ubuntu/discord-bot/venv/bin/python -c 'import os; from bots.nfts_bot import NFTsBot; NFTsBot().run(os.getenv("NFTS_BOT_TOKEN"))'
 Restart=always
+RestartSec=1
+User=root
+WorkingDirectory=/home/ubuntu/discord-bot
+EnvironmentFile=/home/ubuntu/discord-bot/.env
+ExecStart=/home/ubuntu/discord-bot/venv/bin/python bots/nfts_bot.py
 
 [Install]
-WantedBy=multi-unit.target
+WantedBy=multi-user.target
